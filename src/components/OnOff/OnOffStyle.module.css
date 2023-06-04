@@ -1,0 +1,42 @@
+.switcher{
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.squareNeutral{
+    width: 200px;
+    height: 50px;
+    border: 1px solid black;
+    background-color: white;
+    text-align: center;
+}
+.square1{
+    width: 200px;
+    height: 50px;
+    border: 1px solid black;
+    background-color: greenyellow;
+    text-align: center;
+}
+.square2{
+    width: 200px;
+    height: 50px;
+    border: 1px solid black;
+    background-color: indianred;
+    text-align: center;
+}
+.bulb1{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid black;
+    background-color: greenyellow;
+    margin-left: 10px;
+}
+.bulb2{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid black;
+    background-color: indianred;
+    margin-left: 10px;
+}
