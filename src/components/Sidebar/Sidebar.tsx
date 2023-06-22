@@ -1,18 +1,18 @@
 import React from 'react';
 import styled from "styled-components";
 import s from './Sidebar.module.css'
+import { NavLink } from 'react-router-dom';
 
 export const Sidebar = () => {
     return (
         <div className={`sidebar ${s.sidebar}`}>
-<ul className={s.menu}>
-    <li><a>My profile</a></li>
-    <li><a>Messages</a></li>
-    <li><a>News</a></li>
-    <li><a>Friends</a></li>
-    <li><a>Communities</a></li>
-</ul>
-
+            <ul className={s.menu}>
+                <li><NavLink to={'/profile'}>My profile</NavLink></li>
+                <li><NavLink to={'/dialogs'}>Messages</NavLink></li>
+                <li><NavLink to={'/feed'}>Feed</NavLink></li>
+                <li><NavLink to={'/friends'}>Friends</NavLink></li>
+                <li><NavLink to={'/groups'}>Groups</NavLink></li>
+            </ul>
         </div>
     );
 };

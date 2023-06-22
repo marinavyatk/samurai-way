@@ -1,19 +1,24 @@
 .App {
-display: grid;
+    display: grid;
     grid-template-areas:
 " header header"
 "sidebar content";
 }
 
-.header{
+.header {
     background-color: greenyellow;
     grid-area: header;
+
 }
-.sidebar{
+
+.sidebar {
     background-color: green;
     grid-area: sidebar;
+    min-width: 150px;
+    width: 200px;
 }
-.content{
+
+.content {
     background-color: indianred;
     grid-area: content;
 }
