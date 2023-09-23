@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from "styled-components";
 import s from './Sidebar.module.css'
 import { NavLink } from 'react-router-dom';
 
@@ -12,6 +11,7 @@ export const Sidebar = () => {
                 <li><NavLink to={'/feed'}>Feed</NavLink></li>
                 <li><NavLink to={'/friends'}>Friends</NavLink></li>
                 <li><NavLink to={'/groups'}>Groups</NavLink></li>
+                <li><NavLink to={'/users'}>Users</NavLink></li>
             </ul>
         </div>
     );
