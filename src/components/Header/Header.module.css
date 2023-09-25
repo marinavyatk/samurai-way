@@ -1,8 +1,16 @@
-.header{
+.header {
     display: flex;
     justify-content: space-between;
-padding: 10px 50px;
+    padding: 10px 50px;
 }
-.networkLogoAndName{
+
+.networkLogoAndName {
     display: flex;
+}
+
+.loginBlock {
+    float: right;
+}
+.loginBlock a{
+    color:black;
 }

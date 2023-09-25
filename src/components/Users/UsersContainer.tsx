@@ -12,6 +12,7 @@ import {UsersPresentationalComponent, UsersResponseType} from "./UsersPresentati
 import React from "react";
 import axios from "axios";
 import {Preloader} from "../common/Preloader";
+import {UsersApi} from "../API/API";
 
 export type UsersPropsType = {
     usersPage: UsersResponseType & { page: number, currentPage: number, isPreloading: boolean },
@@ -26,10 +27,19 @@ export type UsersPropsType = {
 export class UsersSecondContainer extends React.Component<UsersPropsType, StoreType> {
     componentDidMount() {
         this.props.togglePreloader(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.usersPage.currentPage}&count=${this.props.usersPage.page}`)
-            .then(result => {
-                this.props.setUsers(result.data.items)
-                this.props.setTotalUsersCount(result.data.totalCount)
+        // axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.usersPage.currentPage}&count=${this.props.usersPage.page}`, {
+        //     withCredentials: true,
+        //     headers: {"API-KEY": 'e9641289-ee14-4d73-be86-68e64b3c2a02'}
+        // })
+        //     .then(result => {
+        //         this.props.setUsers(result.data.items)
+        //         this.props.setTotalUsersCount(result.data.totalCount)
+        //         this.props.togglePreloader(false)
+        //     })
+        UsersApi.getUsers(this.props.usersPage.currentPage, this.props.usersPage.page)
+            .then(data => {
+                this.props.setUsers(data.items)
+                this.props.setTotalUsersCount(data.totalCount)
                 this.props.togglePreloader(false)
             })
     }
@@ -37,10 +47,21 @@ export class UsersSecondContainer extends React.Component<UsersPropsType, StoreT
     onPageChange = (page: number) => {
         this.props.togglePreloader(true)
         this.props.setCurrentPage(page);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.usersPage.page}`)
-            .then(result => {
-                this.props.setUsers(result.data.items)
-                this.props.setTotalUsersCount(result.data.totalCount)
+        // axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.usersPage.page}`, {
+        //     withCredentials: true,
+        //     headers: {"API-KEY": 'e9641289-ee14-4d73-be86-68e64b3c2a02'}
+        // })
+        //     .then(result => {
+        //         this.props.setUsers(result.data.items)
+        //         this.props.setTotalUsersCount(result.data.totalCount)
+        //         this.props.togglePreloader(false)
+        //
+        //     })
+
+        UsersApi.getUsers(page, this.props.usersPage.page)
+            .then(data => {
+                this.props.setUsers(data.items)
+                this.props.setTotalUsersCount(data.totalCount)
                 this.props.togglePreloader(false)
 
             })

@@ -10,13 +10,14 @@ import {Friends} from './components/Friends/Friends';
 import {Groups} from './components/Groups/Groups';
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import {UsersFirstContainer} from "./components/Users/UsersContainer";
+import {HeaderMainContainer} from "./components/Header/HeaderContainer";
 
 
 function App() {
     return (
         <div className={'App'}>
             <BrowserRouter>
-                <Header/>
+                <HeaderMainContainer/>
                 <Sidebar/>
                 <div>
                     <Route path={'/profile/:userId?'} component={ProfileFirstContainer}/>
