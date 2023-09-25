@@ -1,10 +1,12 @@
 import React from 'react';
 import {ProfilePostItem, ProfilePostItemType} from "./ProfilePostItem";
+import {ProfileType} from "../../redux/reducers/profile-reducer";
 
-type ProfileOnePost = ProfilePostItemType & { id: number }
-type PostsStateType = {
+export type ProfileOnePost = ProfilePostItemType & { id: number }
+export type PostsStateType = {
     posts: ProfileOnePost[],
-    newPostText: string
+    newPostText: string,
+    profile: ProfileType
 }
 
 
@@ -14,9 +16,8 @@ type ProfilePostsType = {
     updateNewPostText: (updatedText:string)=>void
 }
 const ProfilePosts = (props: ProfilePostsType) => {
-    debugger;
     let postsElements =
-        props.postsState.posts.map(post => <ProfilePostItem message={post.message} likesCount={post.likesCount}/>);
+        props.postsState.posts.map(post => <ProfilePostItem message={post.message} likesCount={post.likesCount} />);
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 

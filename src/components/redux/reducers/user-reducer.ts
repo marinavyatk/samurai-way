@@ -1,17 +1,19 @@
-import {UsersResponseType, UsersWithClasses} from "../../Users/UsersWithClasses";
+import {UsersResponseType} from "../../Users/UsersPresentationalComponent";
 
 const follow = 'FOLLOW'
 const unfollow = 'UNFOLLOW'
 const setUsers = 'SET-USERS'
 const setCurrentPage = 'SET-CURRENT-PAGE'
+const setTotalUsersCount = 'SET-TOTAL-USERS-COUNT'
+const togglePreloading = 'TOGGLE-PRELOADING'
 
 // type LocationType = {
 //     country: string,
 //     city: string
 // }
 type PhotosType = {
-    small: undefined,
-    large: undefined
+    small: null | string,
+    large: null | string
 }
 export type UserType = {
     name: string,
@@ -39,15 +41,30 @@ type setCurrentPageAT = {
     type: 'SET-CURRENT-PAGE',
     pageNumber: number
 }
+type setTotalUsersCountAT = {
+    type: 'SET-TOTAL-USERS-COUNT',
+    totalUsersCount: number
+}
+type togglePreloadingAT = {
+    type: 'TOGGLE-PRELOADING',
+    isPreloading: boolean
+}
 
-type UsersActionCommonType = FollowAT | UnfollowAT | SetUsersAT | setCurrentPageAT
+type UsersActionCommonType =
+    FollowAT
+    | UnfollowAT
+    | SetUsersAT
+    | setCurrentPageAT
+    | setTotalUsersCountAT
+    | togglePreloadingAT
 
-const initState: UsersResponseType & { page: number, currentPage: number } = {
+const initState: UsersResponseType & { page: number, currentPage: number, isPreloading: boolean } = {
     items: [],
-    totalCount: 10,
+    totalCount: 30,
     error: null,
-    page: 5,
-    currentPage: 1
+    page: 10,
+    currentPage: 1,
+    isPreloading: false
 }
 // users:[{
 //             id: 6,
@@ -94,10 +111,16 @@ export const UserReducer = (state = initState, action: UsersActionCommonType) =>
             return {...state, items: state.items.map(el => el.id === action.userId ? {...el, followed: false} : el)}
         }
         case setUsers: {
-            return {...state, items: [...state.items, ...action.users]}
+            return {...state, items: [...action.users]}
         }
         case setCurrentPage: {
             return {...state, currentPage: action.pageNumber}
+        }
+        case setTotalUsersCount: {
+            return {...state, totalCount: action.totalUsersCount}
+        }
+        case togglePreloading: {
+            return {...state, isPreloading: action.isPreloading}
         }
         default:
             return state;
@@ -108,6 +131,6 @@ export const UserReducer = (state = initState, action: UsersActionCommonType) =>
 export const followAC = (userId: number) => ({type: follow, userId})
 export const unfollowAC = (userId: number) => ({type: unfollow, userId})
 export const setUsersAC = (users: UserType[]) => ({type: setUsers, users})
-export const setCurrentPageAC = (pageNumber: number) => ({
-    type: setCurrentPage, pageNumber
-})
+export const setCurrentPageAC = (pageNumber: number) => ({type: setCurrentPage, pageNumber})
+export const setTotalUsersCountAC = (totalUsersCount: number) => ({type: setTotalUsersCount, totalUsersCount})
+export const togglePreloadingAC = (isPreloading: boolean) => ({type: togglePreloading, isPreloading})

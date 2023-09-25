@@ -2,34 +2,34 @@ import React from 'react';
 import './App.css';
 import {Sidebar} from "./components/Sidebar/Sidebar";
 import {Header} from "./components/Header/Header";
-import {Profile} from "./components/Profile/Profile";
-import { BrowserRouter, Route, Router } from 'react-router-dom';
+import {ProfileFirstContainer} from "./components/Profile/Profile";
+import {BrowserRouter, Route} from 'react-router-dom';
 
-import { Feed } from './components/Feed/Feed';
-import { Friends } from './components/Friends/Friends';
-import { Groups } from './components/Groups/Groups';
-import Dialogs from "./components/Dialogs/Dialogs";
+import {Feed} from './components/Feed/Feed';
+import {Friends} from './components/Friends/Friends';
+import {Groups} from './components/Groups/Groups';
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import {UsersContainer} from "./components/Users/UsersContainer";
+import {UsersFirstContainer} from "./components/Users/UsersContainer";
 
 
 function App() {
     return (
-    <div className={'App'}>
-        <BrowserRouter>
-            <Header/>
-            <Sidebar/>
-            <div>
-                <Route path={'/profile'} component={Profile}/>
-                <Route path={'/dialogs'} component={DialogsContainer}/>
-                <Route path={'/feed'} component={Feed}/>
-                <Route path={'/friends'} component={Friends}/>
-                <Route path={'/groups'} component={Groups}/>
-                <Route path={'/users'} component={UsersContainer}/>
-            </div>
-        </BrowserRouter>
-    </div>)
+        <div className={'App'}>
+            <BrowserRouter>
+                <Header/>
+                <Sidebar/>
+                <div>
+                    <Route path={'/profile/:userId?'} component={ProfileFirstContainer}/>
+                    <Route path={'/dialogs'} component={DialogsContainer}/>
+                    <Route path={'/feed'} component={Feed}/>
+                    <Route path={'/friends'} component={Friends}/>
+                    <Route path={'/groups'} component={Groups}/>
+                    <Route path={'/users'} component={UsersFirstContainer}/>
+                </div>
+            </BrowserRouter>
+        </div>)
 }
+
 export default App;
 
 
